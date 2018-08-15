@@ -42,13 +42,15 @@ def entry(path, regex):
         except CalledProcessError as e:
             return e.returncode
 
-        o = b" ".join(o.strip().split())
+        o = b" ".join(o.strip().split()).split()
         if len(o) > 0:
             n = sum(int(i) for i in o)
             matched_files.append((f, n))
             max_matches = max(max_matches, n)
 
     click.echo("done.")
+    import pdb
+    pdb.set_trace()
 
     if max_matches < 0:
         click.echo("No match has been found.")
